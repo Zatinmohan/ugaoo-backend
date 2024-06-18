@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -30,11 +31,11 @@ func init() {
 
 func main() {
 	r := router.SetupRoutes()
-	host := os.Getenv("HOST")
+	// host := os.Getenv("HOST")
 	port := os.Getenv("PORT")
 
 	log.Println("Starting server at port ", port)
-	err := http.ListenAndServe(host, r)
+	err := http.ListenAndServe(fmt.Sprintf(":%v", port), r)
 
 	if err != nil {
 		log.Fatalln("There's an error with server", err)
