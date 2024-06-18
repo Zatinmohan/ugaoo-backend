@@ -33,9 +33,10 @@ func main() {
 	r := router.SetupRoutes()
 	// host := os.Getenv("HOST")
 	port := os.Getenv("PORT")
+	port = fmt.Sprintf(":%v", port)
 
-	log.Println("Starting server at port ", port)
-	err := http.ListenAndServe(fmt.Sprintf(":%v", port), r)
+	log.Println("Starting server at port", port)
+	err := http.ListenAndServe(port, r)
 
 	if err != nil {
 		log.Fatalln("There's an error with server", err)
