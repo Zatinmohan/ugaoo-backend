@@ -39,6 +39,8 @@ func GetAllProducts(w http.ResponseWriter, r *http.Request) {
 
 		products = append(products, singleProduct)
 	}
+
+	w.Header().Add("Content-Type", "application/json")
 	result := response.GetFinalResponse(http.StatusOK, fmt.Sprintf("%d Products Found", len(products)), products)
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(result)

@@ -45,6 +45,7 @@ func FetchAllSubcategories(w http.ResponseWriter, r *http.Request) {
 		subcategories = append(subcategories, subcategory)
 	}
 
+	w.Header().Add("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	result := response.GetFinalResponse(http.StatusOK, fmt.Sprintf("%d Subcategories Found", len(subcategories)), subcategories)
 	json.NewEncoder(w).Encode(result)

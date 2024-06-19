@@ -46,8 +46,8 @@ func FetchAllCategory(w http.ResponseWriter, r *http.Request) {
 	}
 
 	result := response.GetFinalResponse(http.StatusOK, fmt.Sprintf("%d Categories Found", len(categories)), categories)
+	w.Header().Add("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(result)
 
 }
-
